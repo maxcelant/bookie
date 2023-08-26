@@ -3,16 +3,16 @@ import openai
 import os
 from dotenv import load_dotenv
 
-from backend.bookie import Bookie
-from backend.schemas.ai_response import AIResponse
-from backend.schemas.question import Question
-from backend.functions import functions
-from backend.callables import callables
+from bookie import Bookie
+from schemas.ai_response import AIResponse
+from schemas.question import Question
+from functions import functions
+from callables import callables
 from init import initial_state
 
 load_dotenv()
 
-openai.api_key = os.get_env('OPENAI_API_KEY')
+openai.api_key = os.getenv('OPENAI_API_KEY')
 app = FastAPI()
 
 

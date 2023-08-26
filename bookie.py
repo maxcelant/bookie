@@ -1,5 +1,5 @@
 import openai
-from backend.schemas.ai_response import AIResponse
+from schemas.ai_response import AIResponse
 
 
 class Bookie:
