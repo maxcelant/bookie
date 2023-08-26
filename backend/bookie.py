@@ -47,3 +47,6 @@ class Bookie:
         self.history.append(
             {"role": "assistant", "content": response_message.content})
         return AIResponse(text=response_message.content)
+
+    def get_history(self):
+        return self.history

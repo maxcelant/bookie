@@ -4,29 +4,64 @@ from datetime import datetime
 
 
 def get_flights():
-    cities = ["New York", "London", "Paris", "Tokyo",
-              "Sydney", "Los Angeles", "Singapore", "Berlin"]
-    plane_types = ["Boeing 747", "Airbus A320", "Boeing 777", "Airbus A380"]
-    times = [datetime(2023, 9, 1, i, random.choice(range(60)))
-             for i in range(24)]
 
-    flight_data = []
-    for _ in range(10):
-        departure_city = random.choice(cities)
-        destination_city = random.choice(
-            list(filter(lambda x: x != departure_city, cities)))
-        departure_time = random.choice(times)
-        duration = random.randint(2, 15)
-        airplane_type = random.choice(plane_types)
-        price = random.uniform(100.0, 1500.0)
+    data = {
+        "flights": [
+            {
+                "flight_id": "AA123",
+                "departure_time": "09:00",
+                "destination_time": "12:00",
+                "departure_city": "New York",
+                "destination_city": "Los Angeles",
+                "price": "$300",
+                "seat_availability": {
+                    "economy": 25,
+                    "business": 5,
+                    "first_class": 2
+                },
+                "flight_status": "On Time",
+                "gate": "B12",
+                "in_flight_services": {
+                    "meals": ["vegan", "chicken", "beef"],
+                    "wifi": True,
+                    "entertainment": ["movies", "music", "games"]
+                },
+                "loyalty_points_earned": 500
+            },
+            {
+                "flight_id": "AA456",
+                "departure_time": "15:00",
+                "destination_time": "18:30",
+                "departure_city": "Chicago",
+                "destination_city": "Miami",
+                "price": "$220",
+                "seat_availability": {
+                    "economy": 50,
+                    "business": 10,
+                    "first_class": 0
+                },
+                "flight_status": "Delayed",
+                "gate": "C7",
+                "in_flight_services": {
+                    "meals": ["vegan", "seafood"],
+                    "wifi": False,
+                    "entertainment": ["movies", "games"]
+                },
+                "loyalty_points_earned": 400
+            }
+        ],
+        "airport_services": {
+            "New York": {
+                "lounges": ["Admirals Club", "Priority Pass"],
+                "shops": ["Duty-Free", "TechStore"],
+                "restaurants": ["Starbucks", "Burger King"]
+            },
+            "Los Angeles": {
+                "lounges": ["Centurion Lounge", "Admirals Club"],
+                "shops": ["Fashion Boutique", "Tech Haven"],
+                "restaurants": ["Pizza Express", "Taco Bell"]
+            }
+        }
+    }
 
-        flight_data.append({
-            "departure_city": departure_city,
-            "destination_city": destination_city,
-            "departure_time": departure_time.strftime("%Y-%m-%d %H:%M:%S"),
-            "duration_hours": duration,
-            "airplane_type": airplane_type,
-            "price": round(price, 2)
-        })
-
-    return json.dumps(flight_data, indent=4)
+    return json.dumps(data, indent=4)

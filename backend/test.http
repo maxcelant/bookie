@@ -3,5 +3,5 @@ Content-Type: application/json
 Accept: application/json
 
 {
-    "text":"Hello! Are there any flights heading to europe?"
+    "text":"Hello! Are there any flights heading to LA?"
 }
