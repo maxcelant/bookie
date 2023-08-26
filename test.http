@@ -1,0 +1,7 @@
+GET http://localhost:5000/ask
+Content-Type: application/json
+Accept: application/json
+
+{
+    "text":"Hello! Are there any flights heading to europe?"
+}
