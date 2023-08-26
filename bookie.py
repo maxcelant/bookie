@@ -1,28 +1,25 @@
 import openai
-from pydantic import BaseModel
+from backend.schemas.ai_response import AIResponse
 
 
-class AIResponse(BaseModel):
-    text: str
-
-
-class AIModel:
-    def __init__(self, model_type='gpt-3.5-turbo', functions=[], callables={}):
+class Bookie:
+    def __init__(self, model_type='gpt-3.5-turbo', functions=[], callables={}, history=[]):
         self.model_type = model_type
         self.functions = functions
         self.callables = callables
-        self.history = []
+        self.history = history
 
     def add_to_history(self, role, content):
         self.history.append({"role": role, "content": content})
 
     def call_model(self):
-        return openai.ChatCompletion.create(
+        completion = openai.ChatCompletion.create(
             model=self.model_type,
             messages=self.history,
             functions=self.functions,
             function_call="auto"
         )
+        return completion.choices[0].message
 
     def handle_function_call(self, response_message):
         function_name = response_message.function_call.name
