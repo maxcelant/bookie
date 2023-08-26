@@ -11,6 +11,8 @@ uvicorn = "*"
 httpx = "*"
 asyncio = "*"
 python-dotenv = "*"
+itsdangerous = "*"
+starlette = "*"
 
 [dev-packages]
 
